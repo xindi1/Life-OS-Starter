@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta name="theme-color" content="#081120" />
+  <meta
+    name="description"
+    content="Momentum Chain makes behavioral momentum visible so consistency can be protected and extended."
+  />
+  <title>Momentum Chain</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="deep">
+  <div class="app-shell">
+    <header class="app-header card glass">
+      <div class="brand-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Life OS Starter
+        </div>
+        <h1>Momentum Chain</h1>
+        <p class="subtitle">
+          Makes behavioral momentum visible so consistency can be protected and extended.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button class="button button-ghost" id="themeToggleBtn" type="button" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M7.05 16.95l-1.414 1.414m0-12.728L7.05 7.05m10.9 9.9-1.414-1.414" />
+          </svg>
+          <span id="themeToggleLabel">Dark</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-stack">
+      <section class="hero-grid">
+        <article class="hero-card card feature-card">
+          <div class="feature-label">Today</div>
+          <div class="feature-value" id="todayDateLabel">—</div>
+          <div class="feature-subtext" id="todayStatusText">Loading today status…</div>
+        </article>
+
+        <article class="hero-card card stat-card stat-card-primary">
+          <div class="stat-label">Today Completion</div>
+          <div class="stat-value" id="todayCompletionCount">0/0</div>
+          <div class="stat-subtext" id="todayCompletionText">No behaviors yet</div>
+        </article>
+
+        <article class="hero-card card stat-card">
+          <div class="stat-label">Longest Active Streak</div>
+          <div class="stat-value" id="longestStreakCount">0</div>
+          <div class="stat-subtext" id="longestStreakText">No active streaks yet</div>
+        </article>
+      </section>
+
+<nav class="module-nav" aria-label="Bundle navigation">
+  <a class="module-nav-link" href="../index.html">Life OS Starter</a>
+  <a class="module-nav-link" href="../habit-engine/index.html">Habit Engine</a>
+  <a class="module-nav-link" href="../momentum-chain/index.html" aria-current="page">Momentum Chain</a>
+  <a class="module-nav-link" href="../priority-engine/index.html">Priority Engine</a>
+</nav>
+
+      <section class="card chain-card">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Chain View</div>
+            <h2>Daily behavior continuity</h2>
+          </div>
+          <div class="summary-strip" id="summaryStrip">
+            <span class="summary-pill" id="habitCountPill">0 behaviors</span>
+            <span class="summary-pill summary-pill-today" id="todayPill">Today</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="chain-grid" aria-label="Momentum Chain">
+            <thead>
+              <tr>
+                <th class="habit-col">Behavior</th>
+                <th id="dayHeader0"></th>
+                <th id="dayHeader1"></th>
+                <th id="dayHeader2"></th>
+                <th id="dayHeader3"></th>
+                <th id="dayHeader4"></th>
+                <th id="dayHeader5"></th>
+                <th id="dayHeader6"></th>
+              </tr>
+            </thead>
+            <tbody id="chainBody"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          <strong>No behaviors yet.</strong>
+          Add your first behavior below, then tap circles to keep the chain alive.
+        </div>
+
+        <div class="add-panel">
+          <div class="add-panel-copy">
+            <div class="section-kicker">Add Behavior</div>
+            <h3>Extend the chain</h3>
+            <p>Add a custom behavior to start tracking it immediately.</p>
+          </div>
+
+          <div class="add-habit-row">
+            <input
+              type="text"
+              id="newHabitInput"
+              placeholder="Add a new behavior (e.g., Long walk, Sunlight, Evening wind-down)"
+              autocomplete="off"
+            />
+            <button class="button button-primary" id="addHabitBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span>Add Behavior</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      Life OS Starter • Momentum Chain
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

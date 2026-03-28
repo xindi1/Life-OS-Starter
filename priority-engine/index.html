@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priority Engine</title>
+  <meta
+    name="description"
+    content="Ranks work by importance, timing, and payoff to determine what matters now."
+  />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1020'/%3E%3Cpath d='M16 45V19h8c5.8 0 9.8 3.2 9.8 8.7 0 5.4-4 8.7-9.8 8.7h-3.5V45H16zm8-12.4c3.1 0 5-1.7 5-4.9s-1.9-4.9-5-4.9h-3.5v9.8H24zm13 12.4 8.1-26h6.4l8.1 26h-4.9l-1.8-6.1h-8.9L42 45h-5zm7.8-10.1h6.6l-3.3-11.1-3.3 11.1z' fill='%23dbeafe'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='38' fill='%230b1020'/%3E%3Cpath d='M39 128V52h22.5c16.2 0 27.4 9.3 27.4 25.4S77.7 103 61.5 103H51.2v25H39zm22.5-36.2c8.7 0 14.1-4.8 14.1-13.4S70.2 65 61.5 65H51.2v26.8h10.3zm36.5 36.2 23.6-76h18.8l23.6 76H149l-5.4-17.8h-26L112.3 128H98zM120.8 98.5H140l-9.6-32.2-9.6 32.2z' fill='%23dbeafe'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <main class="app-wrap">
+      <section class="hero-card">
+        <div class="hero-topbar">
+          <div class="brand-lockup">
+            <div class="eyebrow">Life OS Starter</div>
+            <h1>Priority Engine</h1>
+            <p class="hero-subtitle">
+              Ranks work by importance, timing, and payoff to determine what matters now.
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <button id="themeBtn" class="btn btn-secondary" type="button" aria-label="Toggle theme">
+              Theme: Dark
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-pills">
+          <span class="pill">Weighted priority scoring</span>
+          <span class="pill">Auto horizon assignment</span>
+          <span class="pill">Next Best Action</span>
+          <span class="pill">Horizon planning</span>
+          <span class="pill">CSV export</span>
+          <span class="pill">Local storage</span>
+        </div>
+      </section>
+
+<nav class="module-nav" aria-label="Bundle navigation">
+  <a class="module-nav-link" href="../index.html">Life OS Starter</a>
+  <a class="module-nav-link" href="../habit-engine/index.html">Habit Engine</a>
+  <a class="module-nav-link" href="../momentum-chain/index.html">Momentum Chain</a>
+  <a class="module-nav-link" href="../priority-engine/index.html" aria-current="page">Priority Engine</a>
+</nav>
+
+      <section class="section-card feature-card feature-card-priority">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Priority Focus</div>
+            <h2>Next Best Action</h2>
+          </div>
+          <p class="section-note">
+            The highest-priority active task outside the Someday horizon appears here first.
+          </p>
+        </div>
+
+        <div id="nba-panel" class="nba-panel">
+          <!-- populated by app.js -->
+        </div>
+
+        <div class="section-actions">
+          <button id="btn-export-csv" class="btn btn-secondary" type="button">
+            Export Tasks (CSV)
+          </button>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Capture + Score</div>
+            <h2>Add a Task</h2>
+          </div>
+          <p class="section-note">
+            Score is calculated automatically and used to assign an initial horizon.
+          </p>
+        </div>
+
+        <form id="task-form" class="task-form">
+          <div class="form-grid">
+            <div class="field field-span-2">
+              <label for="task-title">Task</label>
+              <input
+                id="task-title"
+                type="text"
+                placeholder="e.g., Finalize proposal, ship feature, schedule appointment"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="task-category">Category</label>
+              <select id="task-category">
+                <option value="Business / Revenue">Business / Revenue</option>
+                <option value="Product / Build">Product / Build</option>
+                <option value="Operations / Admin">Operations / Admin</option>
+                <option value="Marketing / Growth">Marketing / Growth</option>
+                <option value="Finance / Planning">Finance / Planning</option>
+                <option value="Health / Wellness">Health / Wellness</option>
+                <option value="Learning / Skill Building">Learning / Skill Building</option>
+                <option value="Creative / Writing">Creative / Writing</option>
+                <option value="Personal / Household">Personal / Household</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="task-notes">Quick Note</label>
+              <input
+                id="task-notes"
+                type="text"
+                placeholder="Optional context, dependency, or reminder"
+              />
+            </div>
+
+            <div class="field field-full">
+              <div class="scoring-header">
+                <div>
+                  <label class="scoring-title">Scoring Inputs (1–5)</label>
+                  <div class="field-hint">
+                    Evaluate each task across importance, cost, timing, and compounding value.
+                  </div>
+                </div>
+              </div>
+
+              <div class="score-grid">
+                <div class="field">
+                  <label for="impact-score">Impact</label>
+                  <select id="impact-score">
+                    <option value="5">5 – Transformational</option>
+                    <option value="4">4 – High</option>
+                    <option value="3" selected>3 – Medium</option>
+                    <option value="2">2 – Low</option>
+                    <option value="1">1 – Minimal</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="effort-score">Effort</label>
+                  <select id="effort-score">
+                    <option value="1" selected>1 – Very low</option>
+                    <option value="2">2 – Low</option>
+                    <option value="3">3 – Moderate</option>
+                    <option value="4">4 – High</option>
+                    <option value="5">5 – Very high</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="revenue-score">Revenue</label>
+                  <select id="revenue-score">
+                    <option value="5">5 – Strong direct payoff</option>
+                    <option value="4">4 – Clear payoff potential</option>
+                    <option value="3" selected>3 – Indirect value</option>
+                    <option value="2">2 – Limited payoff</option>
+                    <option value="1">1 – No direct payoff</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="urgency-score">Urgency</label>
+                  <select id="urgency-score">
+                    <option value="5">5 – Immediate</option>
+                    <option value="4">4 – This week</option>
+                    <option value="3" selected>3 – Soon</option>
+                    <option value="2">2 – Flexible</option>
+                    <option value="1">1 – No time pressure</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="momentum-score">Momentum</label>
+                  <select id="momentum-score">
+                    <option value="5">5 – Unlocks many next steps</option>
+                    <option value="4">4 – Creates strong forward motion</option>
+                    <option value="3" selected>3 – Helpful progress</option>
+                    <option value="2">2 – Limited carryover</option>
+                    <option value="1">1 – Little downstream effect</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field field-full">
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  Add Task &amp; Auto-Assign Horizon
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="formula-card">
+          <div class="formula-label">Priority Formula (scaled 0–100)</div>
+          <code>
+            Score = Impact×0.40 + Revenue×0.25 + Urgency×0.10 + Momentum×0.10 − Effort×0.15
+          </code>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Horizon Planning</div>
+            <h2>Horizon Views</h2>
+          </div>
+          <p class="section-note">
+            Move work closer or push it further out as priorities change. Completed tasks remain visible but subdued.
+          </p>
+        </div>
+
+        <div id="horizon-summary-grid" class="horizon-summary-grid">
+          <!-- populated by app.js -->
+        </div>
+
+        <div id="horizons-grid" class="horizons-grid">
+          <!-- populated by app.js -->
+        </div>
+
+        <p class="footnote">
+          Horizon guide: 0 = Today / 48h · 1 = Next 7 days · 2 = Next 30 days · 3 = Next 90 days · 4 = 6–12 months · 5 = Someday / Parking Lot
+        </p>
+      </section>
+
+      <footer class="app-footer">
+        Life OS Starter • Priority Engine
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

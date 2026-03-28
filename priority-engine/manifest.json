@@ -1,0 +1,27 @@
+{
+  "name": "Priority Engine",
+  "short_name": "Priority Engine",
+  "description": "Ranks work by importance, timing, and payoff to determine what matters now.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070b16",
+  "theme_color": "#0b1020",
+  "orientation": "portrait",
+  "lang": "en",
+  "categories": ["productivity", "utilities", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%230b1020'/%3E%3Cpath d='M42 137V55h24c17.3 0 29.1 10 29.1 27.4S83.3 110 66 110H54.9v27H42zm24-39.1c9.4 0 15.3-5.2 15.3-14.5S75.4 69 66 69H54.9v28.9H66zm39 39.1 25.5-82h20.4l25.5 82h-16.1l-5.9-19.3H126l-5.8 19.3H105zm24.6-31.8h20.8L140 70.4l-10.4 34.8z' fill='%23dbeafe'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230b1020'/%3E%3Cpath d='M112 364V148h64c46.2 0 77.8 26.4 77.8 72.1S222.2 292 176 292h-29.1v72H112zm64-102.9c25.2 0 41-14 41-39.1S201.2 183 176 183h-29.1v78.1H176zm104 102.9 67.2-216H401l67.2 216h-42.4l-15.5-50.8h-74.6L320.3 364H280zm64.8-83.8h54.8L372.2 188l-27.4 92.2z' fill='%23dbeafe'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

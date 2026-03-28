@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Habit Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#081120" />
+  <meta
+    name="description"
+    content="Tracks recurring behaviors that compound discipline, consistency, and performance."
+  />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="eyebrow">Life OS Starter</div>
+        <h1>Habit Engine</h1>
+        <p class="subtitle">
+          Tracks recurring behaviors that compound discipline, consistency, and performance.
+        </p>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="today-chip">
+          <span class="today-chip-label" id="today-date-label">Today</span>
+          <strong id="today-completion">0 / 0 complete</strong>
+        </div>
+
+        <label class="theme-toggle" for="theme-toggle-checkbox" aria-label="Toggle theme">
+          <span>Dark</span>
+          <input type="checkbox" id="theme-toggle-checkbox" />
+          <span>Light</span>
+        </label>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <div class="hero-kicker">Daily operating layer</div>
+          <h2>Keep consistency visible.</h2>
+          <p>
+            Productized for real users: categories and habits can now be managed in-app
+            without touching code.
+          </p>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric-card metric-card-primary">
+            <div class="metric-label">Today</div>
+            <div class="metric-value" id="hero-completion-count">0 / 0</div>
+            <div class="metric-subtext" id="hero-completion-percent">0% complete</div>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-label">Streaks Active</div>
+            <div class="metric-value" id="active-streak-count">0</div>
+            <div class="metric-subtext">Habits with current streak progress</div>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-label">XP Total</div>
+            <div class="metric-value" id="hero-xp-total">0</div>
+            <div class="metric-subtext" id="hero-level-label">Level 1</div>
+          </article>
+        </div>
+      </section>
+
+<nav class="module-nav" aria-label="Bundle navigation">
+  <a class="module-nav-link" href="../index.html">Life OS Starter</a>
+  <a class="module-nav-link" href="../habit-engine/index.html" aria-current="page">Habit Engine</a>
+  <a class="module-nav-link" href="../momentum-chain/index.html">Momentum Chain</a>
+  <a class="module-nav-link" href="../priority-engine/index.html">Priority Engine</a>
+</nav>
+
+      <section class="content-grid">
+        <div class="left-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Daily Habit Grid</div>
+                <div class="panel-note">
+                  Save once to update streaks and XP. Categories and habits are editable below.
+                </div>
+              </div>
+              <div class="panel-tag">Operating Core</div>
+            </div>
+
+            <div class="category-stack" id="habit-sections"></div>
+
+            <div class="panel-footer">
+              <button class="btn btn-primary" id="save-today-btn">Save daily progress</button>
+              <div class="footer-hint" id="save-status-text">Streaks update once per day when saved.</div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Manage Categories & Habits</div>
+                <div class="panel-note">
+                  Built for product use. Add, rename, move, and remove categories or habits in-app.
+                </div>
+              </div>
+              <div class="panel-tag">Configure</div>
+            </div>
+
+            <div class="manage-stack">
+              <div class="manager-grid manager-grid-3">
+                <label class="field-block">
+                  <span class="field-label">New category title</span>
+                  <input type="text" id="new-category-title" placeholder="Example: Health" />
+                </label>
+
+                <label class="field-block">
+                  <span class="field-label">Category note</span>
+                  <input type="text" id="new-category-note" placeholder="Short support text" />
+                </label>
+
+                <label class="field-block">
+                  <span class="field-label">Badge</span>
+                  <input type="text" id="new-category-badge" placeholder="Example: Health" />
+                </label>
+              </div>
+
+              <div class="manager-actions">
+                <button class="btn btn-primary" id="add-category-btn">Add category</button>
+                <div class="footer-hint" id="manage-status-text">No changes yet.</div>
+              </div>
+
+              <div id="manager-sections" class="manager-sections"></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="right-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Progress</div>
+                <div class="panel-note">Completion, streaks, and XP made more visible.</div>
+              </div>
+              <div class="panel-tag">Signal</div>
+            </div>
+
+            <div class="summary-stack">
+              <div class="summary-card summary-card-strong">
+                <div class="summary-label">Completion</div>
+                <div class="summary-big" id="summary-completion-main">0 / 0</div>
+                <div class="summary-small" id="summary-completion-detail">0% of habits complete today</div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-label">Best Streak</div>
+                <div class="summary-big" id="best-streak-value">0d</div>
+                <div class="summary-small" id="best-streak-name">No streak yet</div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-label">Saved Today</div>
+                <div class="summary-big" id="xp-habits-today">0</div>
+                <div class="summary-small">Habits counted on last save</div>
+              </div>
+            </div>
+
+            <div class="xp-panel">
+              <div class="xp-topline">
+                <div>
+                  <div class="xp-label">XP / Level</div>
+                  <div class="xp-level" id="xp-level-label">Level 1</div>
+                </div>
+                <div class="xp-total" id="xp-total-label">0 XP total</div>
+              </div>
+
+              <div class="xp-bar">
+                <div class="xp-fill" id="xp-fill"></div>
+              </div>
+
+              <div class="xp-meta">
+                <span id="xp-current-segment">0 / 100 to next level</span>
+                <span id="xp-today-note">Complete habits and save to earn XP.</span>
+              </div>
+            </div>
+
+            <div class="panel-footer panel-footer-tight">
+              <button class="btn btn-ghost" id="reset-data-btn">Reset all data</button>
+              <div class="footer-hint">Clears categories, habits, streaks, XP, and review.</div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Weekly Review</div>
+                <div class="panel-note">Preserved as a lightweight review layer.</div>
+              </div>
+              <div class="panel-tag">Reflection</div>
+            </div>
+
+            <div class="review-stack">
+              <label class="field-block">
+                <span class="field-label">What worked this week?</span>
+                <textarea id="review-worked" rows="4" placeholder="Habits, routines, setups, and decisions that held up."></textarea>
+              </label>
+
+              <label class="field-block">
+                <span class="field-label">What didn’t work?</span>
+                <textarea id="review-didnt" rows="4" placeholder="Friction, misses, emotional leaks, or broken routines."></textarea>
+              </label>
+
+              <label class="field-block">
+                <span class="field-label">2 key priorities for next week</span>
+                <textarea id="review-focus" rows="4" placeholder="What matters most in the next cycle?"></textarea>
+              </label>
+            </div>
+
+            <div class="panel-footer">
+              <button class="btn btn-primary" id="save-review-btn">Save weekly review</button>
+              <div class="footer-hint footer-status" id="review-status-text">Not saved yet.</div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">Life OS Starter • Habit Engine</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Life OS Starter</title>
+  <meta
+    name="description"
+    content="Builds consistency, momentum, and prioritization into a lightweight personal operating layer."
+  />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <main class="app-wrap">
+      <section class="hero-card">
+        <div class="hero-topbar">
+          <div class="brand-lockup">
+            <div class="eyebrow">Life Operating System</div>
+            <h1>Life OS Starter</h1>
+            <p class="hero-subtitle">
+              Builds consistency, momentum, and prioritization into a lightweight personal operating layer.
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <button id="themeBtn" class="btn btn-secondary" type="button" aria-label="Toggle theme">
+              Theme: Dark
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-pills">
+          <span class="pill">Consistency layer</span>
+          <span class="pill">Momentum visibility</span>
+          <span class="pill">Priority ranking</span>
+          <span class="pill">Mobile-first</span>
+          <span class="pill">Installable PWA</span>
+          <span class="pill">Local-first system</span>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="summary-card summary-card-primary">
+          <div class="summary-label">System State</div>
+          <div id="systemState" class="summary-value">Loading…</div>
+          <div id="systemStateMeta" class="summary-subtext">
+            Reading connected module signals.
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-label">Consistency</div>
+          <div id="consistencyValue" class="summary-value">—</div>
+          <div id="consistencyMeta" class="summary-subtext">Habit Engine snapshot</div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-label">Momentum</div>
+          <div id="momentumValue" class="summary-value">—</div>
+          <div id="momentumMeta" class="summary-subtext">Momentum Chain snapshot</div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-label">Priority</div>
+          <div id="priorityValue" class="summary-value">—</div>
+          <div id="priorityMeta" class="summary-subtext">Priority Engine snapshot</div>
+        </article>
+      </section>
+
+      <section class="section-card feature-card feature-card-starter">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Operating Layer</div>
+            <h2>What this system is doing</h2>
+          </div>
+          <p class="section-note">
+            Life OS Starter is the parent shell. The modules below handle the actual behavioral layers.
+          </p>
+        </div>
+
+        <div class="signal-strip" id="signalStrip">
+          <span class="signal-pill" id="signalPillConsistency">Consistency signal: —</span>
+          <span class="signal-pill" id="signalPillMomentum">Momentum signal: —</span>
+          <span class="signal-pill" id="signalPillPriority">Priority signal: —</span>
+        </div>
+
+        <div class="starter-grid">
+          <article class="starter-panel">
+            <div class="starter-panel-kicker">1. Consistency</div>
+            <h3>Habit Engine</h3>
+            <p>
+              Tracks recurring behaviors, daily completion, streak continuity, and weekly review.
+            </p>
+
+            <div class="mini-metrics">
+              <div class="mini-metric">
+                <span class="mini-label">Today</span>
+                <strong id="habitTodayMetric">—</strong>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-label">Streaks</span>
+                <strong id="habitStreakMetric">—</strong>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <a class="btn btn-primary" href="habit-engine/index.html">Open Habit Engine</a>
+            </div>
+          </article>
+
+          <article class="starter-panel">
+            <div class="starter-panel-kicker">2. Momentum</div>
+            <h3>Momentum Chain</h3>
+            <p>
+              Makes continuation visible so behaviors are easier to protect, extend, and recover.
+            </p>
+
+            <div class="mini-metrics">
+              <div class="mini-metric">
+                <span class="mini-label">Today Wins</span>
+                <strong id="momentumTodayMetric">—</strong>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-label">Longest Active</span>
+                <strong id="momentumStreakMetric">—</strong>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <a class="btn btn-primary" href="momentum-chain/index.html">Open Momentum Chain</a>
+            </div>
+          </article>
+
+          <article class="starter-panel">
+            <div class="starter-panel-kicker">3. Priority</div>
+            <h3>Priority Engine</h3>
+            <p>
+              Scores work by importance, timing, and payoff to determine what matters now.
+            </p>
+
+            <div class="mini-metrics">
+              <div class="mini-metric">
+                <span class="mini-label">Top Priorities</span>
+                <strong id="priorityNearTermMetric">—</strong>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-label">Next Best</span>
+                <strong id="priorityNbaMetric">—</strong>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <a class="btn btn-primary" href="priority-engine/index.html">Open Priority Engine</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Operating Sequence</div>
+            <h2>Recommended use order</h2>
+          </div>
+          <p class="section-note">
+            This keeps the shell coherent without changing the core logic inside the apps themselves.
+          </p>
+        </div>
+
+        <div class="flow-grid">
+          <article class="flow-card">
+            <div class="flow-step">01</div>
+            <h3>Check consistency</h3>
+            <p>Start with Habit Engine to see whether the daily operating layer is live.</p>
+          </article>
+
+          <article class="flow-card">
+            <div class="flow-step">02</div>
+            <h3>Protect momentum</h3>
+            <p>Use Momentum Chain to keep visible continuation alive and recover broken runs quickly.</p>
+          </article>
+
+          <article class="flow-card">
+            <div class="flow-step">03</div>
+            <h3>Rank action</h3>
+            <p>Use Priority Engine to decide what belongs now, later, or not at all.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Bundle Access</div>
+            <h2>Module launcher</h2>
+          </div>
+          <p class="section-note">
+            These links assume each module sits in its own subfolder inside Bundle 4.
+          </p>
+        </div>
+
+        <div class="launcher-grid">
+          <a class="launcher-card" href="habit-engine/index.html">
+            <div class="launcher-kicker">Consistency</div>
+            <h3>Habit Engine</h3>
+            <p>Recurring behaviors, completion, streaks, weekly review.</p>
+          </a>
+
+          <a class="launcher-card" href="momentum-chain/index.html">
+            <div class="launcher-kicker">Momentum</div>
+            <h3>Momentum Chain</h3>
+            <p>Behavior chain continuity, daily visibility, continuation pressure.</p>
+          </a>
+
+          <a class="launcher-card" href="priority-engine/index.html">
+            <div class="launcher-kicker">Priority</div>
+            <h3>Priority Engine</h3>
+            <p>Scoring, horizon assignment, next best action, planning views.</p>
+          </a>
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        Life OS Starter • Personal Operating Layer
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

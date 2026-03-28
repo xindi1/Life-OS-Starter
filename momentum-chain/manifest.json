@@ -1,0 +1,22 @@
+{
+  "name": "Momentum Chain",
+  "short_name": "Momentum Chain",
+  "description": "Makes behavioral momentum visible so consistency can be protected and extended.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#081120",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
