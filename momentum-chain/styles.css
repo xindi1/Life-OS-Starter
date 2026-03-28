@@ -18,7 +18,11 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -107,6 +111,7 @@ svg {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  flex-shrink: 0;
 }
 
 .app-shell {
@@ -185,6 +190,7 @@ svg {
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 0 4px rgba(102, 163, 255, 0.12);
+  flex-shrink: 0;
 }
 
 .brand-copy h1 {
@@ -204,6 +210,7 @@ svg {
 .header-actions {
   display: flex;
   justify-content: flex-end;
+  flex-shrink: 0;
 }
 
 .hero-grid {
@@ -215,6 +222,7 @@ svg {
 .hero-card {
   min-height: 150px;
   padding: 18px 18px 20px;
+  min-width: 0;
 }
 
 .feature-card {
@@ -242,6 +250,7 @@ svg {
   margin-top: 12px;
   font-weight: 800;
   letter-spacing: -0.03em;
+  word-break: break-word;
 }
 
 .feature-value {
@@ -273,6 +282,7 @@ svg {
 
 .chain-card {
   padding: 20px;
+  min-width: 0;
 }
 
 .section-head {
@@ -309,6 +319,7 @@ svg {
   font-size: 0.82rem;
   font-weight: 650;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .summary-pill-today {
@@ -318,37 +329,41 @@ svg {
 
 .table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)), var(--bg-soft);
+  width: 100%;
+  max-width: 100%;
 }
 
 .chain-grid {
   width: 100%;
-  min-width: 760px;
+  min-width: 0;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .chain-grid thead th {
-  padding: 14px 10px;
+  padding: 12px 6px;
   border-bottom: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-align: center;
   background: rgba(255,255,255,0.01);
 }
 
 .chain-grid thead th.habit-col {
   text-align: left;
-  padding-left: 16px;
+  padding-left: 14px;
 }
 
 .chain-grid tbody th,
 .chain-grid tbody td {
   border-bottom: 1px solid var(--border);
-  padding: 12px 10px;
+  padding: 10px 6px;
 }
 
 .chain-grid tbody tr:last-child th,
@@ -357,7 +372,8 @@ svg {
 }
 
 .habit-col {
-  width: 280px;
+  width: 44%;
+  min-width: 150px;
 }
 
 .date-label {
@@ -371,6 +387,8 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .date-label-sub {
@@ -394,12 +412,14 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .habit-name-row {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .habit-name {
@@ -407,6 +427,9 @@ svg {
   font-weight: 700;
   color: var(--text-main);
   text-align: left;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .habit-actions {
@@ -414,6 +437,7 @@ svg {
   align-items: center;
   gap: 6px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .habit-meta {
@@ -433,6 +457,7 @@ svg {
   color: var(--text-soft);
   font-size: 0.73rem;
   font-weight: 650;
+  max-width: 100%;
 }
 
 .chain-dot {
@@ -451,6 +476,7 @@ svg {
     border-color var(--transition-fast),
     box-shadow var(--transition-fast),
     color var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .chain-dot:hover {
@@ -481,6 +507,7 @@ svg {
     color var(--transition-fast),
     border-color var(--transition-fast),
     transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .icon-button:hover {
@@ -514,12 +541,14 @@ svg {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
 }
 
 .add-habit-row input[type="text"] {
   flex: 1 1 280px;
   min-width: 0;
   min-height: 48px;
+  width: 100%;
   padding: 12px 14px;
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -545,6 +574,7 @@ svg {
   border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 0.92rem;
   font-weight: 700;
@@ -554,6 +584,7 @@ svg {
     box-shadow var(--transition-fast),
     background var(--transition-fast),
     border-color var(--transition-fast);
+  max-width: 100%;
 }
 
 .button:hover {
@@ -610,40 +641,168 @@ svg {
 
 @media (max-width: 720px) {
   .app-shell {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 24px;
   }
 
   .app-header,
   .chain-card,
   .hero-card {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   .app-header {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
   }
 
   .header-actions {
     justify-content: flex-start;
   }
 
+  .brand-copy h1 {
+    font-size: 1.72rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
   .feature-value {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
 
   .stat-value {
-    font-size: 2rem;
+    font-size: 1.85rem;
+  }
+
+  .section-head {
+    gap: 10px;
+  }
+
+  .summary-strip {
+    justify-content: flex-start;
+  }
+
+  .summary-pill {
+    font-size: 0.78rem;
+    padding: 6px 10px;
   }
 
   .chain-grid {
-    min-width: 700px;
+    font-size: 0.84rem;
+  }
+
+  .chain-grid thead th {
+    padding: 10px 4px;
+    font-size: 0.62rem;
+  }
+
+  .chain-grid tbody th,
+  .chain-grid tbody td {
+    padding: 8px 4px;
   }
 
   .habit-col {
-    width: 240px;
+    width: 46%;
+    min-width: 135px;
+  }
+
+  .habit-name {
+    font-size: 0.88rem;
+  }
+
+  .habit-meta-pill {
+    font-size: 0.68rem;
+    min-height: 24px;
+    padding: 3px 7px;
+  }
+
+  .chain-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 0.82rem;
+  }
+
+  .icon-button {
+    width: 26px;
+    height: 26px;
+  }
+
+  .add-habit-row {
+    flex-direction: column;
+  }
+
+  .add-habit-row input[type="text"],
+  .add-habit-row .button {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .app-footer {
+    padding-bottom: 4px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .app-header,
+  .chain-card,
+  .hero-card {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-copy h1 {
+    font-size: 1.58rem;
+  }
+
+  .subtitle {
+    font-size: 0.91rem;
+  }
+
+  .feature-value {
+    font-size: 1.24rem;
+  }
+
+  .stat-value {
+    font-size: 1.7rem;
+  }
+
+  .chain-grid thead th {
+    font-size: 0.58rem;
+  }
+
+  .habit-col {
+    width: 48%;
+    min-width: 124px;
+  }
+
+  .habit-name {
+    font-size: 0.84rem;
+  }
+
+  .chain-dot {
+    width: 26px;
+    height: 26px;
+    font-size: 0.76rem;
+  }
+
+  .today-pill {
+    font-size: 0.56rem;
+    padding: 2px 6px;
   }
 }
 
@@ -654,43 +813,4 @@ svg {
     transition: none !important;
     scroll-behavior: auto !important;
   }
-}
-
-.module-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 16px 0 18px;
-}
-
-.module-nav-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 9px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.82rem;
-  font-weight: 600;
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
-}
-
-html[data-theme="light"] .module-nav-link,
-body.theme-light .module-nav-link {
-  background: rgba(15, 23, 42, 0.03);
-}
-
-.module-nav-link:hover {
-  transform: translateY(-1px);
-  border-color: rgba(96, 165, 250, 0.34);
-  color: var(--text);
-}
-
-.module-nav-link[aria-current="page"] {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-color: rgba(96, 165, 250, 0.28);
 }
