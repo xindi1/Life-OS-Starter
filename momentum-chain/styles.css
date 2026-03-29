@@ -126,6 +126,7 @@ svg {
 .main-stack {
   display: grid;
   gap: 18px;
+  min-width: 0;
 }
 
 .card {
@@ -134,6 +135,7 @@ svg {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(18px);
+  min-width: 0;
 }
 
 .glass {
@@ -167,6 +169,7 @@ svg {
 .header-actions {
   position: relative;
   z-index: 1;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -182,6 +185,7 @@ svg {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  max-width: 100%;
 }
 
 .eyebrow-dot {
@@ -198,6 +202,7 @@ svg {
   font-size: clamp(1.8rem, 4vw, 2.45rem);
   line-height: 1.06;
   letter-spacing: -0.03em;
+  word-break: break-word;
 }
 
 .subtitle {
@@ -282,7 +287,6 @@ svg {
 
 .chain-card {
   padding: 20px;
-  min-width: 0;
 }
 
 .section-head {
@@ -298,6 +302,7 @@ svg {
   margin: 6px 0 0;
   font-size: 1.2rem;
   line-height: 1.15;
+  word-break: break-word;
 }
 
 .summary-strip {
@@ -353,6 +358,7 @@ svg {
   letter-spacing: 0.08em;
   text-align: center;
   background: rgba(255,255,255,0.01);
+  vertical-align: middle;
 }
 
 .chain-grid thead th.habit-col {
@@ -364,6 +370,7 @@ svg {
 .chain-grid tbody td {
   border-bottom: 1px solid var(--border);
   padding: 10px 6px;
+  vertical-align: middle;
 }
 
 .chain-grid tbody tr:last-child th,
@@ -376,36 +383,46 @@ svg {
   min-width: 150px;
 }
 
-.date-label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.date-label-main {
+  display: inline-flex;
   align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  line-height: 1;
 }
 
 .date-label-main {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .date-label-sub {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   color: var(--text-muted);
+  line-height: 1;
 }
 
 .today-pill {
-  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
   border-radius: 999px;
   background: rgba(102, 163, 255, 0.14);
   border: 1px solid rgba(102, 163, 255, 0.24);
   color: var(--text-main);
-  font-size: 0.62rem;
+  font-size: 0.56rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .habit-cell {
@@ -732,6 +749,26 @@ svg {
     height: 26px;
   }
 
+  .date-label {
+    gap: 2px;
+  }
+
+  .date-label-main {
+    gap: 3px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    font-size: 0.6rem;
+  }
+
+  .date-label-sub {
+    font-size: 0.55rem;
+  }
+
+  .today-pill {
+    font-size: 0.5rem;
+    padding: 1px 5px;
+  }
+
   .add-habit-row {
     flex-direction: column;
   }
@@ -800,9 +837,18 @@ svg {
     font-size: 0.76rem;
   }
 
-  .today-pill {
+  .date-label-main {
     font-size: 0.56rem;
-    padding: 2px 6px;
+    gap: 2px;
+  }
+
+  .date-label-sub {
+    font-size: 0.5rem;
+  }
+
+  .today-pill {
+    font-size: 0.46rem;
+    padding: 1px 4px;
   }
 }
 
@@ -813,4 +859,48 @@ svg {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------- MODULE NAV FIX (non-destructive) ---------- */
+
+.module-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 6px 0 4px;
+}
+
+.module-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 34px;
+  padding: 7px 12px;
+
+  border-radius: 999px;
+  border: 1px solid var(--pill-border);
+  background: var(--pill-bg);
+
+  color: var(--text-soft);
+  text-decoration: none;
+
+  font-size: 0.82rem;
+  font-weight: 650;
+  white-space: nowrap;
+
+  transition: all 0.18s ease;
+}
+
+.module-nav-link:hover {
+  color: var(--text-main);
+  border-color: var(--border-strong);
+  background: var(--bg-soft-2);
+  transform: translateY(-1px);
+}
+
+.module-nav-link[aria-current="page"] {
+  color: var(--text-main);
+  border-color: rgba(102, 163, 255, 0.34);
+  background: rgba(102, 163, 255, 0.12);
 }
