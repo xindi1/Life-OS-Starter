@@ -335,16 +335,13 @@ svg {
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)), var(--bg-soft);
   width: 100%;
   max-width: 100%;
 }
 
 .chain-grid {
   width: 100%;
-  min-width: 0;
+  min-width: 760px;
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -383,29 +380,27 @@ svg {
   min-width: 150px;
 }
 
-.date-label-main {
-  display: inline-flex;
+.date-label {
+  display: flex;
   align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-  line-height: 1;
+  justify-content: center;
 }
 
 .date-label-main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  flex-wrap: nowrap;
   white-space: nowrap;
   line-height: 1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.date-label-sub {
-  font-size: 0.66rem;
-  color: var(--text-muted);
-  line-height: 1;
+.date-label-sub,
+.today-pill {
+  display: none;
 }
 
 .today-pill {
@@ -782,6 +777,9 @@ svg {
   .app-footer {
     padding-bottom: 4px;
   }
+
+.date-label-main {
+  font-size: 0.62rem;
 }
 
 @media (max-width: 420px) {
@@ -850,6 +848,9 @@ svg {
     font-size: 0.46rem;
     padding: 1px 4px;
   }
+
+.date-label-main {
+  font-size: 0.58rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -874,21 +875,16 @@ svg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-height: 34px;
   padding: 7px 12px;
-
   border-radius: 999px;
   border: 1px solid var(--pill-border);
   background: var(--pill-bg);
-
   color: var(--text-soft);
   text-decoration: none;
-
   font-size: 0.82rem;
   font-weight: 650;
   white-space: nowrap;
-
   transition: all 0.18s ease;
 }
 
@@ -903,4 +899,34 @@ svg {
   color: var(--text-main);
   border-color: rgba(102, 163, 255, 0.34);
   background: rgba(102, 163, 255, 0.12);
+}
+
+nav.module-nav a.module-nav-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 34px !important;
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--pill-border) !important;
+  background: var(--pill-bg) !important;
+  color: var(--text-soft) !important;
+  text-decoration: none !important;
+  font-size: 0.82rem !important;
+  font-weight: 650 !important;
+  white-space: nowrap !important;
+  transition: all 0.18s ease !important;
+}
+
+nav.module-nav a.module-nav-link:hover {
+  color: var(--text-main) !important;
+  border-color: var(--border-strong) !important;
+  background: var(--bg-soft-2) !important;
+  transform: translateY(-1px) !important;
+}
+
+nav.module-nav a.module-nav-link[aria-current="page"] {
+  color: var(--text-main) !important;
+  border-color: rgba(102, 163, 255, 0.34) !important;
+  background: rgba(102, 163, 255, 0.12) !important;
 }

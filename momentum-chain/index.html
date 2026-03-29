@@ -16,6 +16,45 @@
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
+
+<style>
+  nav.module-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 6px 0 4px;
+  }
+
+  nav.module-nav a.module-nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--pill-border);
+    background: var(--pill-bg);
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 650;
+    white-space: nowrap;
+    transition: all 0.18s ease;
+  }
+
+  nav.module-nav a.module-nav-link:hover {
+    color: var(--text-main);
+    border-color: var(--border-strong);
+    background: var(--bg-soft-2);
+    transform: translateY(-1px);
+  }
+
+  nav.module-nav a.module-nav-link[aria-current="page"] {
+    color: var(--text-main);
+    border-color: rgba(102, 163, 255, 0.34);
+    background: rgba(102, 163, 255, 0.12);
+  }
+</style>
 </head>
 <body data-theme="deep">
   <div class="app-shell">

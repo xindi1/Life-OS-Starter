@@ -140,17 +140,13 @@ function updateDayHeaders() {
 
   days.forEach((date, index) => {
     const isToday = formatDateKey(date) === todayKey;
-    const weekday = date.toLocaleDateString(undefined, { weekday: "short" });
-    const dayNum = date.getDate();
-    const month = date.toLocaleDateString(undefined, { month: "short" });
+
+    const shortLabelMap = ["M", "T", "W", "T", "F", "S", "Today"];
+    const label = isToday ? "Today" : shortLabelMap[index];
 
     dayHeaderEls[index].innerHTML = `
       <div class="date-label">
-        <span class="date-label-main">
-          ${weekday} ${dayNum}
-          ${isToday ? '<span class="today-pill">Today</span>' : ""}
-        </span>
-        <span class="date-label-sub">${month}</span>
+        <span class="date-label-main">${label}</span>
       </div>
     `;
   });
